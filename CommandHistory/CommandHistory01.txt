@@ -1,0 +1,89 @@
+ Id CommandLine                                                                                                       
+  -- -----------                                                                                                       
+   1 f:                                                                                                                
+   2 e:                                                                                                                
+   3 f:                                                                                                                
+   4 dir                                                                                                               
+   5 e:                                                                                                                
+   6 dir                                                                                                               
+   7 mkdir .\sandbox\PowerShell\                                                                                       
+   8 cd E:\sandbox\PowerShell\                                                                                         
+   9 mkdir azureCli                                                                                                    
+  10 cd .\azureCli\                                                                                                    
+  11 ls                                                                                                                
+  12 npm install azure-cli -g                                                                                          
+  13 azure                                                                                                             
+  14 azure help                                                                                                        
+  15 azure                                                                                                             
+  16 azure portal                                                                                                      
+  17 azure account                                                                                                     
+  18 azure portal help                                                                                                 
+  19 azure                                                                                                             
+  20 azure config                                                                                                      
+  21 azure config list                                                                                                 
+  22 azure portal                                                                                                      
+  23 ls                                                                                                                
+  24 azure                                                                                                             
+  25 azure vm                                                                                                          
+  26 vm crate                                                                                                          
+  27 vm create                                                                                                         
+  28 vm                                                                                                                
+  29 azure vm                                                                                                          
+  30 azure vm create                                                                                                   
+  31 npm update -g azure-cli                                                                                           
+  32 azure login                                                                                                       
+  33 azire account download                                                                                            
+  34 azure account download                                                                                            
+  35 azure account                                                                                                     
+  36 account list                                                                                                      
+  37 azure account list                                                                                                
+  38 azure account set "Visual Studio Enterpris"                                                            
+  39 azure account list                                                                                                
+  40 Get-History                                                                                                       
+  41 Get-History | clip                                                                                                
+  42 azure login -u                                                                                                    
+  43 azure login -u xs@hotmail.co.uk                                                                         
+  44 azure login                                                                                                       
+  45 account show                                                                                                      
+  46 azure account show                                                                                                
+  47 azure feature list                                                                                                
+  48 feature show                                                                                                      
+  49 azure feature show                                                                                                
+  50 azure feature show providerName x                                                                                 
+  51 azure create DenStorage                                                                                           
+  52 azure group create DenStorage                                                                                     
+  53 azure group create DenStorage DenLocation                                                                         
+  54 azure group create DenStorage westeurope                                                                          
+  55 azure group list                                                                                                  
+  56 azure group delete Default-ApplicationInsights-CentralUS                                                          
+  57 azure group show DenStorage                                                                                       
+  58 azure group show DenResource                                                                                      
+  59 azure group log show DenResource                                                                                  
+  60 azure group deployment list DenResource                                                                           
+  61 azure group deployment list DenStorage                                                                            
+  62 azure location list                                                                                               
+  63 network vnet list                                                                                                 
+  64 azure network vnet list                                                                                           
+  65 azure provider list                                                                                               
+  66 azure help vm quick-create                                                                                        
+  67 azure vm quick-create                                                                                             
+  68 azure vm quick-create DenStorage                                                                                  
+  69 azure vm quick-create DenStorage DenVmCli Windows                                                                 
+  70 azure vm quick-create -v                                                                                          
+  71 azure vm quick-create -g DenStorage                                                                               
+  72 azure vm quick-create -g DenStorage -n DenVmCli                                                                   
+  73 azure vm quick-create -g DenStorage -n DenVmCli -l Narnia                                                         
+  74 azure vm quick-create -g DenStorage -n DenVmCli -l WestEurope -y Windows                                          
+  75 azure vm quick-create -g DenStorage -n DenVmCli -l WestEurope -y Windows -Q Win2012R2Datacenter                   
+  76 azure vm quick-create -g DenStorage -n DenVmCli -l WestEurope -y Windows -Q Win2012R2Datacenter -u x.
+  77 azure vm quick-create -g DenStorage -n DenVmCli -l WestEurope -y Windows -Q Win2012R2Datacenter -u x
+  78 azure vm quick-create -g DenStorage -n DenVmCli -l WestEurope -y Windows -Q Win2012R2Datacenter -u administrato...
+  79 Get-History | clip                                                                                                
+  80 Get-History                                                                                                       
+  81 azure vm disk attach-new DenStorage DenVm 100                                                                     
+  82 azure vm disk attach-new DenStorage DenVmCli 100                                                                  
+  83 azure help vm                                                                                                     
+  84 azure help vm stop                                                                                                
+  85 azure vm stop -v -g DenStorage -n DenVmCli                                                                        
+  86 azure vm deallocate -v -g DenStorage -n DenVmCli                                                                  
+  87 azure vm stop -v -g DenResource -n DenSS2016                                                                      
