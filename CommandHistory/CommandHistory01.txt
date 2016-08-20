@@ -87,3 +87,6 @@
   85 azure vm stop -v -g DenStorage -n DenVmCli                                                                        
   86 azure vm deallocate -v -g DenStorage -n DenVmCli                                                                  
   87 azure vm stop -v -g DenResource -n DenSS2016                                                                      
+Get-History | Export-Clixml -Path .\\history.20160817.xml
+Get-History | ConvertTo-Json
+Get-History | clip
