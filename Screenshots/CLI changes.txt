@@ -1,0 +1,1 @@
+See AzureCli24.PNG which shows in August 2016 that [azure location list] was a valid command. And suddenly it isn't
