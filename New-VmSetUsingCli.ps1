@@ -9,8 +9,8 @@ $username = "thomas"
 $password = "Pathword22!"
 $location = "`"East US`""
 $vmSize = "`"Standard_F4`""
-$vmPrefix = "DemoZZVMn"
-$vmCount = 3
+$vmPrefix = "DemoAZVMn"
+$vmCount = 5
 
 #azure login
 
@@ -21,7 +21,9 @@ $vmCount = 3
     $vmCreateArgs = "vm create $vmName $sqlImage2014 $username $password --location $location --vm-size $vmSize -r"
     Write-Output "Arguments passed to azure.cmd: $vmCreateArgs"
     Start-Process "azure.cmd" -ArgumentList $vmCreateArgs -NoNewWindow -RedirectStandardError $errorLog
-    Start-Sleep 10
-    Start-Process "notepad.exe" -ArgumentList $errorLog
+    #Start-Sleep 10
+    #Start-Process "notepad.exe" -ArgumentList $errorLog
 }
+
+
 
