@@ -5,52 +5,103 @@
     Collection of Azure CLI related functions - see individual functions for examples
 #>
 
-Set-StrictMode -Version latest
+Set-StrictMode -Version latestx
 
 <#
 .Synopsis
-   Create a set of VMs which target the Classic deployment model (ASM). Uses Azure CLI.
+   Create a set of VMs which target the Classic deployment model (ASM). Uses Azure CLI - [azure login]
+   https://azure.microsoft.com/en-gb/documentation/articles/virtual-machines-command-line-tools
 .Example
-   New-ClassicVmSet -VmCount 5 -VmPrefix "aaz"
+   New-VmSet -VmPrefix "aaz" -VmCount 5 
 #>
-function New-ClassicVmSet {
-[CmdletBinding(SupportsShouldProcess)]
+function New-VmSet {
+[CmdletBinding()]
     Param (
-        [int] $VmCount = 2,
-        [Parameter(mandatory = $true)] $VmPrefix
+        [string] $prefix = $null,
+        [int] $VmCount = 2
     )
-    try {
 
-        $errorLog = "c:\temp\configErrors.log"
-        $username = "thomas"
-        $password = "Pathword22!"
-        $location = "`"East US`""
-        $vmSize = "`"Standard_F4`""
-
-        $image = Get-Image
-
-        1..$vmCount | ForEach-Object {
-            $currentVM = $_
-            $vmName = $vmPrefix + $currentVM
-            $vmCreateArgs = "vm create $vmName $image $username $password --location $location --vm-size $vmSize -r"
-            Write-Output "Arguments passed to azure.cmd: $vmCreateArgs"
-            $errorLog = "c:\temp\configErrors$vmName.log"
-            Start-Process "azure.cmd" -ArgumentList $vmCreateArgs -NoNewWindow -RedirectStandardError $errorLog
-            Start-Sleep 15
-            if ($errorLog.Length -gt 0) {
-                throw
-            } 
-        }
-
-    } catch {
-        "I am in here"
-        $errorText = Get-Content $errorLog
-        Write-Output [string] $errorText
-        "Exception caught and rethrown..."
-        throw
-
+    Set-CliEnvironment $prefix
+    1..$vmCount | ForEach-Object {
+        $currentVM = $_
+        $vmName = $vmPrefix + $currentVM
+        $vmCreateArgs = "vm create $vmName $image $username $password" + 
+            " --location $location --vm-size $vmSize -r"
+        Write-Output "Arguments passed to azure.cmd: $vmCreateArgs"
+        Start-Process "azure.cmd" -ArgumentList $vmCreateArgs `
+            -NoNewWindow -RedirectStandardError $errorLog
     }
+
+
 }
+
+<#
+.Synopsis
+    Remove a set of VMs specifying a prefix and a range
+.Example
+    Remove-VmSet -Prefix "demo" -start 1 -end 5
+#>
+function Remove-VmSet ($prefix = $null, $start = $null, $end = $null) {
+    $msg = "VmSet [$prefix*] will be deleted." +
+        "Press ctrl-C to exit, Enter to continue."
+    Read-Host $msg
+    if ($prefix -eq $null -or $start -eq $null -or $end -eq $null) {
+        "You have not specified all Arguments. Exiting..."
+        throw
+    }
+    $start..$end | % {"$prefix$_"; azure vm delete -q $prefix$_}
+
+}
+
+<#
+.Synopsis
+    Set up global environment variables for a naive example end-to-end of CLI deployment
+.Example
+    Set-CliEnvironment -Prefix "polkamot-"
+#>
+function Set-CliEnvironment ($prefix = $null) {
+    if (-not $prefix) {
+        "VM prefix not set. Exiting..."
+        throw
+    }
+    Get-Password
+    $Global:image = "fb83b3509582419d99629ce476bcb5c8__SQL-Server-2014-SP1-12.0.4100.1-Std-ENU-Win2012R2-cy15su05"
+    $Global:username = "polkamot"
+    $Global:location = "`"West Europe`""
+    $Global:vmSize = "`"Standard_F4`""
+    $global:vmPrefix = $global:vmPrefix
+    $Global:errorLog = "c:\temp\azureRun.err"
+}
+
+<#
+.Synopsis
+   Get a password
+.Example
+    Get-Password
+#>
+function Get-Password() {
+    if (-not $Global:password) {
+        Write-Output "Password is not set. Exiting..."
+        throw
+    }
+
+}
+
+<#
+.Synopsis
+   Set a password
+.Example
+    Set-Password
+#>
+function Set-Password() {
+    if ($Global:password) {
+        Write-Output "Password already set. Exiting..."
+        throw
+    }
+    $Global:password = Read-Host -Prompt "Enter the password"
+
+}
+
 
 <#
 .Synopsis
@@ -80,8 +131,12 @@ function Get-Image {
 
 }
 
+# Before executing, Set-Password
+# Before executing, call azure login
 
-#New-ClassicVmSet -VmCount 5 -VmPrefix "aaz"
+#New-VmSet -VmPrefix "PolkaMot-" -VmCount 5
+Remove-VmSet -prefix "PolkaMot-" -start 1 -end 3 
+
 #$image = Get-Image
 #$image
 
