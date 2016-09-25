@@ -23,6 +23,7 @@ function New-VmSet {
 
     Set-CliEnvironment $prefix
     1..$vmCount | ForEach-Object {
+        Start-Sleep 15
         $currentVM = $_
         $vmName = $vmPrefix + $currentVM
         $vmCreateArgs = "vm create $vmName $image $username $password" + 
@@ -132,11 +133,11 @@ function Get-Image {
 }
 
 # Before executing, Set-Password
-#Set-Password
+# Set-Password
 # Before executing, call azure login
 
-New-VmSet -prefix "PolkaMot-" -VmCount 5
-#Remove-VmSet -prefix "PolkaMot-" -start 1 -end 3 
+New-VmSet -prefix "PolkaMot-" -VmCount 20
+#Remove-VmSet -prefix "xPolkaMot-" -start 1 -end 1 
 
 #$image = Get-Image
 #$image
