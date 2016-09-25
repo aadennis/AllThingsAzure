@@ -5,7 +5,7 @@
     Collection of Azure CLI related functions - see individual functions for examples
 #>
 
-Set-StrictMode -Version latestx
+Set-StrictMode -Version latest
 
 <#
 .Synopsis
