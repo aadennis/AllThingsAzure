@@ -67,9 +67,9 @@ function Set-CliEnvironment ($prefix = $null) {
     Get-Password
     $Global:image = "fb83b3509582419d99629ce476bcb5c8__SQL-Server-2014-SP1-12.0.4100.1-Std-ENU-Win2012R2-cy15su05"
     $Global:username = "polkamot"
-    $Global:location = "`"West Europe`""
+    $Global:location = "`"East US`""
     $Global:vmSize = "`"Standard_F4`""
-    $global:vmPrefix = $global:vmPrefix
+    $global:vmPrefix = $prefix
     $Global:errorLog = "c:\temp\azureRun.err"
 }
 
@@ -94,7 +94,7 @@ function Get-Password() {
     Set-Password
 #>
 function Set-Password() {
-    if ($Global:password) {
+    if (Test-Path variable:Global:password) {
         Write-Output "Password already set. Exiting..."
         throw
     }
@@ -132,10 +132,11 @@ function Get-Image {
 }
 
 # Before executing, Set-Password
+#Set-Password
 # Before executing, call azure login
 
-#New-VmSet -VmPrefix "PolkaMot-" -VmCount 5
-Remove-VmSet -prefix "PolkaMot-" -start 1 -end 3 
+New-VmSet -prefix "PolkaMot-" -VmCount 5
+#Remove-VmSet -prefix "PolkaMot-" -start 1 -end 3 
 
 #$image = Get-Image
 #$image
