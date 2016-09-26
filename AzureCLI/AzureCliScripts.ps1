@@ -66,7 +66,7 @@ function Set-CliEnvironment ($prefix = $null) {
         throw
     }
     Get-Password
-    $Global:image = "fb83b3509582419d99629ce476bcb5c8__SQL-Server-2014-SP1-12.0.4100.1-Std-ENU-Win2012R2-cy15su05"
+    $Global:image = "fb83b3509582419d99629ce476bcb5c8__SqlServer-2016-RTM-RServices-13.0.1601.5-Enterprise-ENU-WS2012 R2-CY16-SU0310020"
     $Global:username = "polkamot"
     $Global:location = "`"East US`""
     $Global:vmSize = "`"Standard_F4`""
@@ -138,8 +138,8 @@ function Get-Image {
 # Set-Password
 # Before executing, call azure login
 
-#New-VmSet -prefix "PolkaMot-" -VmCount 5
-Remove-VmSet -prefix "PolkaMot-" -start 1 -end 5
+New-VmSet -prefix "PolkaMot-" -VmCount 1
+#Remove-VmSet -prefix "PolkaMot-" -start 1 -end 5
 
 #$image = Get-Image
 #$image
