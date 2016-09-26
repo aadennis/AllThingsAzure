@@ -115,12 +115,14 @@ function Get-Image {
         "1" = "fb83b3509582419d99629ce476bcb5c8__SQL-Server-2014-SP1-12.0.4100.1-Std-ENU-Win2012R2-cy15su05";
         "2" = "bd507d3a70934695bc2128e3e5a255ba__RightImage-Windows-2012-x64-sqlsvr2012ent-v14.2";
         "3" = "a699494373c04fc0bc8f2bb1389d6106__Windows-Server-2012-R2-20160812-en.us-127GB.vhd";
+        "4" = "fb83b3509582419d99629ce476bcb5c8__SqlServer-2016-RTM-RServices-13.0.1601.5-Enterprise-ENU-WS2012 R2-CY16-SU0310020";
     }
 
-    Write-Host "Enter your choice of image as a number between 1 and 3:
+    Write-Host "Enter your choice of image as a number between 1 and 4:
         1) [Windows 2012 R2, SqlServer 2014 SP1]
         2) [Windows 2012 (not R2), SqlServer 2012]
-        3) [Windows 2012 R2 (no SQLServer)]"
+        3) [Windows 2012 R2 (no SQLServer)]
+        4) [Windows, SqlServer 2016]"
 
     $image = Read-Host
     if ($image -in 1..$imageSet.Count) {
@@ -136,8 +138,8 @@ function Get-Image {
 # Set-Password
 # Before executing, call azure login
 
-New-VmSet -prefix "PolkaMot-" -VmCount 20
-#Remove-VmSet -prefix "xPolkaMot-" -start 1 -end 1 
+#New-VmSet -prefix "PolkaMot-" -VmCount 5
+Remove-VmSet -prefix "PolkaMot-" -start 1 -end 5
 
 #$image = Get-Image
 #$image
