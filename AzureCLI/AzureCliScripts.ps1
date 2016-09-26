@@ -66,7 +66,7 @@ function Set-CliEnvironment ($prefix = $null) {
         throw
     }
     Get-Password
-    $Global:image = "fb83b3509582419d99629ce476bcb5c8__SqlServer-2016-RTM-RServices-13.0.1601.5-Enterprise-ENU-WS2012 R2-CY16-SU0310020"
+    $Global:image = "fb83b3509582419d99629ce476bcb5c8__SqlServer-2016-RTM-RServices-13.0.1601.5-Enterprise-ENU-WS2012R2-CY16-SU0310020"
     $Global:username = "polkamot"
     $Global:location = "`"East US`""
     $Global:vmSize = "`"Standard_F4`""
