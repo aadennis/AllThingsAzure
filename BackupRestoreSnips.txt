@@ -1,0 +1,176 @@
+
+  Id CommandLine                                                                                                                                                                             
+  -- -----------                                                                                                                                                                             
+   1 e:                                                                                                                                                                                      
+   2 cd E:\sandbox\                                                                                                                                                                          
+   3 ls                                                                                                                                                                                      
+   4 cd .\PowerShell\                                                                                                                                                                        
+   5 ls                                                                                                                                                                                      
+   6 mkdir Azure                                                                                                                                                                             
+   7 cd .\Azure\                                                                                                                                                                             
+   8 ls                                                                                                                                                                                      
+   9 Get-Command *azurermrecoveryservices*                                                                                                                                                   
+  10  Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.RecoveryServices"                                                                                                       
+  11 Login-AzureRmAccount                                                                                                                                                                    
+  12  Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.RecoveryServices"                                                                                                       
+  13 New-AzureRmResourceGroup -Name "test-backup" -Location "UK South"                                                                                                                       
+  14 New-AzureRmRecoveryServicesVault -Name "testvault" -resourcegroupname  "test-backup" -Location "UK South"                                                                               
+  15 New-AzureRmRecoveryServicesVault -Name "testvault" -resourcegroupname  "test-backup" -Location "West Europe"                                                                            
+  16 $vault1 = Get-AzureRmRecoveryServicesVault -Name "testvault"                                                                                                                            
+  17 $vault1                                                                                                                                                                                 
+  18 Set-AzureRmRecoveryServicesBackupProperties  -Vault $vault1 -BackupStorageRedundancy GeoRedundant                                                                                       
+  19 Get-AzureRmRecoveryServicesVault                                                                                                                                                        
+  20 Get-AzureRmRecoveryServicesVault -Name testvault | Set-AzureRmRecoveryServicesVaultContext                                                                                              
+  21 PS C:\> Get-AzureRmRecoveryServicesBackupProtectionPolicy -WorkloadType AzureVM                                                                                                         
+  22 Name                 WorkloadType       BackupManagementType BackupTime                DaysOfWeek                                                                                       
+  23 ----                 ------------       -------------------- ----------                ----------...                                                                                    
+  24 Get-AzureRmRecoveryServicesBackupProtectionPolicy                                                                                                                                       
+  25 $pol=Get-AzureRmRecoveryServicesBackupProtectionPolicy -Name "NewPolicy"                                                                                                                
+  26 $pol=Get-AzureRmRecoveryServicesBackupProtectionPolicy -Name "DefaultPolicy"                                                                                                            
+  27 $pol                                                                                                                                                                                    
+  28 get-azurermvm                                                                                                                                                                           
+  29 $namedContainer = Get-AzureRmRecoveryServicesBackupContainer -ContainerType "AzureVM" -Status "Registered" -Name "V2VM"                                                                 
+  30 $namedContainer = Get-AzureRmRecoveryServicesBackupContainer -ContainerType "AzureVM" -Status "Registered" -FriendlyName "V2VM"                                                         
+  31 $namedContainer = Get-AzureRmRecoveryServicesBackupContainer -ContainerType "AzureVM" -Status "Registered" -FriendlyName "V2VM"$namedContainer                                          
+  32 $namedContainer                                                                                                                                                                         
+  33 $item = Get-AzureRmRecoveryServicesBackupItem -Container $namedContainer -WorkloadType "AzureVM"                                                                                        
+  34 $namedContainer = Get-AzureRmRecoveryServicesBackupContainer -ContainerType "AzureVM" -Status "Registered" -FriendlyName "V2VM"                                                         
+  35 $namedContainer                                                                                                                                                                         
+  36 $namedContainer                                                                                                                                                                         
+  37 $namedContainer = Get-AzureRmRecoveryServicesBackupContainer -ContainerType "AzureVM" -Status "Registered" -FriendlyName "Denmot"                                                       
+  38 $namedContainer                                                                                                                                                                         
+  39 $namedContainer                                                                                                                                                                         
+  40 $namedContainer = Get-AzureRmRecoveryServicesBackupContainer -ContainerType "AzureRMVM" -Status "Registered" -FriendlyName "Denmot"                                                     
+  41 $namedContainer                                                                                                                                                                         
+  42 c:                                                                                                                                                                                      
+  43 cd C:\scratch\                                                                                                                                                                          
+  44 ls                                                                                                                                                                                      
+  45 .\MARSAgentInstaller.exe                                                                                                                                                                
+  46 .\MARSAgentInstaller.exe  /q                                                                                                                                                            
+  47 pwd                                                                                                                                                                                     
+  48 Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.RecoveryServices"                                                                                                        
+  49 New-AzureRmRecoveryServicesVault -Name "Denvault" -ResourceGroupName "DenRGWestEurope" Location "WestEurope"                                                                            
+  50 New-AzureRmRecoveryServicesVault -Name "Denvault" -ResourceGroupName "DenRGWestEurope" -Location "WestEurope"                                                                           
+  51 $vault1 = Get-AzureRmRecoveryServicesVault -Name "Denvault"                                                                                                                             
+  52 $vault1                                                                                                                                                                                 
+  53 Set-AzureRmRecoveryServicesBackupProperties  -Vault $vault1 -BackupStorageRedundancy LocallyRedundant                                                                                   
+  54 $vault1.ID                                                                                                                                                                              
+  55 $vault1.Location                                                                                                                                                                        
+  56 $vault1.Name                                                                                                                                                                            
+  57 $vault1.Properties                                                                                                                                                                      
+  58 $vault1.Properties[0]                                                                                                                                                                   
+  59 $vault1.Properties[1]                                                                                                                                                                   
+  60 $vault1.ResourceGroupName                                                                                                                                                               
+  61 $vault1.SubscriptionId                                                                                                                                                                  
+  62 $vault1.Type                                                                                                                                                                            
+  63 $vault1.GetType()                                                                                                                                                                       
+  64 Get-AzureRmRecoveryServicesVault                                                                                                                                                        
+  65 Get-AzureRmRecoveryServicesVault -Name Denvault                                                                                                                                         
+  66 Get-AzureRmRecoveryServicesVault -Name Denvault | Set-AzureRmRecoveryServicesVaultContext                                                                                               
+  67 Get-AzureRmRecoveryServicesBackupProtectionPolicy -WorkloadType AzureVM                                                                                                                 
+  68 Get-AzureRmRecoveryServicesBackupRetentionPolicyObject                                                                                                                                  
+  69 Get-AzureRmRecoveryServicesBackupRetentionPolicyObject -WorkloadType AzureVM                                                                                                            
+  70 $schPol = Get-AzureRmRecoveryServicesBackupRetentionPolicyObject -WorkloadType AzureVM                                                                                                  
+  71 $schPol                                                                                                                                                                                 
+  72 $retPol = Get-AzureRmRecoveryServicesBackupRetentionPolicyObject -WorkloadType "AzureVM"                                                                                                
+  73 $retPol                                                                                                                                                                                 
+  74 New-AzureRmRecoveryServicesBackupProtectionPolicy -Name "DenPolicy" -WorkloadType AzureVM -RetentionPolicy $retPol -SchedulePolicy $schPol                                              
+  75 New-AzureRmRecoveryServicesBackupProtectionPolicy -Name "DenPolicy" -WorkloadType AzureVM -BackupManagementType AzureVM -RetentionPolicy $retPol -SchedulePolicy $schPol -Verbose       
+  76 $schPol = Get-AzureRmRecoveryServicesBackupSchedulePolicyObject -WorkloadType "AzureVM"                                                                                                 
+  77 New-AzureRmRecoveryServicesBackupProtectionPolicy -Name "DenPolicy" -WorkloadType AzureVM -BackupManagementType AzureVM -RetentionPolicy $retPol -SchedulePolicy $schPol -Verbose       
+  78 Getdate                                                                                                                                                                                 
+  79 Get-DAte                                                                                                                                                                                
+  80 $pol=Get-AzureRmRecoveryServicesBackupProtectionPolicy -Name "NewPolicy"                                                                                                                
+  81 $pol=Get-AzureRmRecoveryServicesBackupProtectionPolicy -Name "DenPolicy"                                                                                                                
+  82 $pol                                                                                                                                                                                    
+  83 Enable-AzureRmRecoveryServicesBackupProtection -Policy $pol -name "DenTestingBUVM" -ResourceGroupName "DenRGWestEurope"                                                                 
+  84 $namedContainer = Get-AzureRmRecoveryServicesBackupContainer -ContainerType "AzureVM" -Status "Registered" -Name asdfafd                                                                
+  85 $vm = "DenTestingBUVM"                                                                                                                                                                  
+  86 $rg = "DenRGWestEurope"                                                                                                                                                                 
+  87 $namedContainer = Get-AzureRmRecoveryServicesBackupContainer -ContainerType asdf                                                                                                        
+  88 $containerType = "AzureVM"                                                                                                                                                              
+  89 $namedContainer = Get-AzureRmRecoveryServicesBackupContainer -ContainerType $containerType -Status Registered -name $vm                                                                 
+  90 $namedContainer = Get-AzureRmRecoveryServicesBackupContainer -ContainerType $containerType -Status Registered -FriendlyName $vm                                                         
+  91 $item = Get-AzureRmRecoveryServicesBackupItem -Container $namedContainer -WorkloadType "AzureVM"                                                                                        
+  92 $job = Backup-AzureRmRecoveryServicesBackupItem -Item $item                                                                                                                             
+  93 $joblist = Get-AzureRmRecoveryservicesBackupJob -Status InProgress                                                                                                                      
+  94 $joblist[0]                                                                                                                                                                             
+  95 $joblist[0]                                                                                                                                                                             
+  96 $joblist[0]                                                                                                                                                                             
+  97 $joblist[0]                                                                                                                                                                             
+  98 $joblist[0]                                                                                                                                                                             
+  99 $joblist = Get-AzureRmRecoveryservicesBackupJob                                                                                                                                         
+ 100 $joblist                                                                                                                                                                                
+ 101 Wait-AzureRmRecoveryServicesBackupJob -Job $joblist[0] -Timeout 43200                                                                                                                   
+ 102 Wait-AzureRmRecoveryServicesBackupJob -Job $joblist[0] -Timeout 43200                                                                                                                   
+ 103 get-history | clip.exe                                                                                                                                                                  
+ 104 # The (ARM) resource group cannot be in the [UKSouth] region - [WestEurope] is OK                                                                                                       
+ 105 Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.RecoveryServices"                                                                                                        
+ 106 $resProvider = Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.RecoveryServices"                                                                                         
+ 107 $resProvider                                                                                                                                                                            
+ 108 $resProvider.Locations                                                                                                                                                                  
+ 109 Login-AzureRmAccount                                                                                                                                                                    
+ 110 #New-AzureRmRecoveryServicesVault -Name "Denvault" -ResourceGroupName "DenRGWestEurope" Location "WestEurope"                                                                           
+ 111 $vault = "Denvault"                                                                                                                                                                     
+ 112 $rg                                                                                                                                                                                     
+ 113 $location = "WestEurope"                                                                                                                                                                
+ 114 New-AzureRmRecoveryServicesVault -Name $vault -ResourceGroupName $rg Location $location                                                                                                 
+ 115 New-AzureRmRecoveryServicesVault -Name $vault -ResourceGroupName $rg -Location $location                                                                                                
+ 116 New-AzureRmRecoveryServicesVault -Name $vault -ResourceGroupName $rg -Location $location                                                                                                
+ 117 $instantiatedVault = Get-AzureRmRecoveryServicesVault -Name $vault                                                                                                                      
+ 118 $instantiatedVault                                                                                                                                                                      
+ 119 Set-AzureRmRecoveryServicesBackupProperties  -Vault $vault -BackupStorageRedundancy LocallyRedundant                                                                                    
+ 120 $instantiatedVault = Get-AzureRmRecoveryServicesVault -Name $vault                                                                                                                      
+ 121 Set-AzureRmRecoveryServicesBackupProperties  -Vault $instantiatedVault -BackupStorageRedundancy LocallyRedundant                                                                        
+ 122 Get-AzureRmRecoveryServicesVault                                                                                                                                                        
+ 123 Remove-AzureRmRecoveryServicesVault                                                                                                                                                     
+ 124 Remove-AzureRmRecoveryServicesVault -Vault $(Get-AzureRmRecoveryServicesVault -Name "testvault")                                                                                        
+ 125 Get-AzureRmRecoveryServicesVault                                                                                                                                                        
+ 126 Get-AzureRmRecoveryServicesVault -Name Denvault | Set-AzureRmRecoveryServicesVaultContext                                                                                               
+ 127 Get-AzureRmRecoveryServicesBackupProtectionPolicy -WorkloadType AzureVM                                                                                                                 
+ 128 $vm = "DenTestingBUVM"                                                                                                                                                                  
+ 129 $rg = "DenRGWestEurope"                                                                                                                                                                 
+ 130 $containerType = "AzureVM"                                                                                                                                                              
+ 131 $namedContainer = Get-AzureRmRecoveryServicesBackupContainer -ContainerType $containerType -Status Registered -FriendlyName $vm                                                         
+ 132 $item = Get-AzureRmRecoveryServicesBackupItem -Container $namedContainer -WorkloadType "AzureVM"                                                                                        
+ 133 #NOW RESTORING                                                                                                                                                                          
+ 134 $namedContainer = Get-AzureRmRecoveryServicesBackupContainer  -ContainerType AzureVM -Status Registered -Name $VM                                                                       
+ 135 $namedContainer = Get-AzureRmRecoveryServicesBackupContainer  -ContainerType AzureVM -Status Registered -FriendlyName $VM                                                               
+ 136  $backupitem = Get-AzureRmRecoveryServicesBackupItem -Container $namedContainer  -WorkloadType "AzureVM"                                                                                
+ 137 $startDate = (Get-Date).AddDays(-7)                                                                                                                                                     
+ 138 $endDate = Get-Date                                                                                                                                                                     
+ 139 $rp = Get-AzureRmRecoveryServicesBackupRecoveryPoint -Item $backupitem -StartDate $startdate.ToUniversalTime() -EndDate $enddate.ToUniversalTime()                                      
+ 140 $rp[0]                                                                                                                                                                                  
+ 141 $rp[0].RecoveryPointAdditionalInfo                                                                                                                                                      
+ 142 $rp[0]                                                                                                                                                                                  
+ 143 $restorejob = Restore-AzureRmRecoveryServicesBackupItem -RecoveryPoint $rp[0] -StorageAccountName DestAccount -StorageAccountResourceGroupName $rg                                      
+ 144 .\MARSAgentInstaller.exe /q                                                                                                                                                             
+ 145 .\MARSAgentInstaller.exe                                                                                                                                                                
+ 146 .\MARSAgentInstaller.exe /d                                                                                                                                                             
+ 147 .\MARSAgentInstaller.exe                                                                                                                                                                
+ 148 $credspath = "C:\downloads"                                                                                                                                                             
+ 149 ls                                                                                                                                                                                      
+ 150 mkdir creds                                                                                                                                                                             
+ 151 cd creds                                                                                                                                                                                
+ 152 $credspath = "C:\scratch\creds"                                                                                                                                                         
+ 153 $vault                                                                                                                                                                                  
+ 154 $credsfilename = Get-AzureRmRecoveryServicesVaultSettingsFile -Backup -Vault $vault -Path  $credspath                                                                                   
+ 155 Get-History                                                                                                                                                                             
+ 156 Get-AzureRmRecoveryServicesVault                                                                                                                                                        
+ 157 $denVault = Get-AzureRmRecoveryServicesVault                                                                                                                                            
+ 158 $denVault                                                                                                                                                                               
+ 159 $credsfilename = Get-AzureRmRecoveryServicesVaultSettingsFile -Backup -Vault $denVault -Path  $credspath                                                                                
+ 160 $credsfilename                                                                                                                                                                          
+ 161 mkdir \TestVault                                                                                                                                                                        
+ 162 $credsfilename C:\TestVault\Denvault_Mon Dec 12 2016.VaultCredentials                                                                                                                   
+ 163 $credsfilename C:\TestVault\"Denvault_Mon Dec 12 2016.VaultCredentials"                                                                                                                 
+ 164 $credsfilename                                                                                                                                                                          
+ 165 ;s                                                                                                                                                                                      
+ 166 ls                                                                                                                                                                                      
+ 167 Start-OBRegistration-VaultCredentials 'C:\scratch\creds\Denvault_Mon Dec 12 2016.VaultCredentials' -Confirm:$false                                                                      
+ 168 Start-O                                                                                                                                                                                 
+ 169 $PSVersionTable                                                                                                                                                                         
+ 170 Get-History                                                                                                                                                                             
+ 171 Get-History | clip.exe                                                                                                                                                                  
+
+
