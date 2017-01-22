@@ -1,0 +1,33 @@
+{
+  // Given an existing ResourceGroup, create a storage account and assign it the same location
+  // as the ResourceGroup
+  // Example command line:
+  // New-AzureRmResourceGroupDeployment -Name DWDeploy -ResourceGroupName DWRG `
+  //  -TemplateFile dwdeploy.json -storageAccountName "dwtry02"
+  //, where DWRG is an existing RG, which could have been created using this line:
+  // New-AzureRmResourceGroup -Name DWRG -Location "UK South"
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "storageAccountName": {
+      "type": "string",
+      "metadata": {
+        "description": "Dennis' Storage Account Name"
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[parameters('storageAccountName')]",
+      "apiVersion": "2015-06-15",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "accountType": "Standard_LRS"
+      }
+    }
+  ],
+  "variables": {
+    "storageAccountName": "[concat(uniqueString(resourceGroup().id),'storage')]"
+  }
+}
