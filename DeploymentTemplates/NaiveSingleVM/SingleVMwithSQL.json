@@ -5,10 +5,6 @@
         "vm_adminPassword": {
             "defaultValue": null,
             "type": "securestring"
-        },
-        "location": {
-            "defaultValue": "uksouth",
-            "type": "string"
         }
     },
     "variables": {},
@@ -18,7 +14,7 @@
             "type": "Microsoft.Compute/virtualMachines",
             "name": "mahvm",
             "apiVersion": "2015-06-15",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "hardwareProfile": {
                     "vmSize": "Standard_F4"
@@ -69,7 +65,7 @@
             "type": "Microsoft.Network/networkInterfaces",
             "name": "mahnif",
             "apiVersion": "2016-03-30",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "ipConfigurations": [
                     {
@@ -102,7 +98,7 @@
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "mahipconfig",
             "apiVersion": "2016-03-30",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "publicIPAllocationMethod": "Dynamic",
                 "idleTimeoutInMinutes": 4,
@@ -118,7 +114,7 @@
             "type": "Microsoft.Network/virtualNetworks",
             "name": "mahvnm",
             "apiVersion": "2016-03-30",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
@@ -147,7 +143,7 @@
             "kind": "Storage",
             "name": "san33",
             "apiVersion": "2016-01-01",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "tags": {},
             "properties": {},
             "resources": [],
