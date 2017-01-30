@@ -7,7 +7,12 @@
             "type": "securestring"
         }
     },
-    "variables": {},
+    "variables": {
+     "storage": {
+         "name": "[concat(uniqueString(resourceGroup().id),'storage')]",
+         "type": "Standard_LRS"
+     }
+ },
     "resources": [
         {
             "comments": "My virtual machine",
@@ -30,7 +35,7 @@
                         "name": "osdisk",
                         "createOption": "FromImage",
                         "vhd": {
-                            "uri": "[concat('http', '://', 'san33', '.blob.core.windows.net', '/vhds/osdisk0.vhd')]"
+                            "uri": "[concat('http', '://', variables('storage').name, '.blob.core.windows.net', '/vhds/osdisk0.vhd')]"
                         },
                         "caching": "ReadWrite"
                     },
@@ -56,7 +61,7 @@
             },
             "resources": [],
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', 'san33')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('storage').name)]",
                 "[resourceId('Microsoft.Network/networkInterfaces', 'mahnif')]"
             ]
         },
@@ -137,11 +142,11 @@
             "comments": "My storage account",
             "type": "Microsoft.Storage/storageAccounts",
             "sku": {
-                "name": "Standard_LRS",
+                "name": "[variables('storage').type]",
                 "tier": "Standard"
             },
             "kind": "Storage",
-            "name": "san33",
+            "name": "[variables('storage').name]",
             "apiVersion": "2016-01-01",
             "location": "[resourceGroup().location]",
             "tags": {},
